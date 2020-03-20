@@ -1,6 +1,6 @@
 {
   "name": "{{project-name}}",
-  "description": "(WiP; This project delivered in {{"now"}} from https://github.com/usagi/template-rust-backend-with-electron-frontend )",
+  "description": "(WiP; This project delivered in {{ "now" | date: "%FT%T%z" }} from https://github.com/usagi/template-rust-backend-with-electron-frontend )",
   "version": "0.0.0",
   "private": true,
   "browserslist": {
