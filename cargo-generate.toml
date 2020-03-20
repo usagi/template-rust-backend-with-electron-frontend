@@ -1,0 +1,3 @@
+[template]
+include = [ "Cargo.toml", "package.json" ]
+exclude = [ "*.png" ]
