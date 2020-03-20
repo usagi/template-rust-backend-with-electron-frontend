@@ -1,24 +1,8 @@
 {
-  "name": "hoge",
-  "version": "0.1.0",
+  "name": "{{project-name}}",
+  "description": "(WiP; This project delivered in {{"now"}} from https://github.com/usagi/template-rust-backend-with-electron-frontend )",
+  "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -30,5 +14,81 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "author": {
+    "name": "{{authors}}",
+    "email": "author@example.com",
+    "url": "https://example.com"
+  },
+  "build": {
+    "appId": "com.example.{{project-name}}",
+    "productName": "{{project-name}}",
+    "copyright": "Copyright © 2020 ${author}",
+    "win": {
+      "extraFiles": [
+        "target/release/lib.dll"
+      ]
+    },
+    "mac": {
+      "extraFiles": [
+        "target/release/lib.dylib"
+      ],
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "extraFiles": [
+        "target/release/lib.so"
+      ]
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      ""
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "rescripts": [
+    "env"
+  ],
+  "scripts": {
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "dev": "cargo build && concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "yarn build",
+    "electron-pack": "cargo build --release && electron-builder build -w",
+    "build-cargo-debug": "cargo build && cpx \"target/debug/*.{dll,so,dylib}\" assets",
+    "build-cargo-release": "cargo build --release"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "cross-env": "^7.0.2",
+    "electron-is-dev": "^1.1.0",
+    "ffi-napi": "^2.4.7",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-scripts": "3.4.0",
+    "ref-napi": "^1.4.3"
+  },
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.13",
+    "@rescripts/rescript-env": "^0.0.11",
+    "concurrently": "^5.1.0",
+    "cpx": "^1.5.0",
+    "electron": "^8.1.1",
+    "electron-builder": "^22.4.1",
+    "electron-rebuild": "^1.10.1",
+    "typescript": "^3.8.3",
+    "wait-on": "^4.0.1"
   }
 }

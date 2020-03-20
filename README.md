@@ -1,68 +1,192 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# template-rust-backend-with-electron-frontend ( template project )
 
-## Available Scripts
+This is the template project with these stacks:
 
-In the project directory, you can run:
+1. [`Rust`][] native library project for backend business logics
+      - -> see also `Cargo.toml` and
+          - `src.rs/` directory
+          - `rust-toolchain`, `.rustfmt.toml` files
+2. [`Node.js`][] with [`react`][] + [`rescripts`][] + [`electron`][] + [`ffi-napi`][] for frontend presentation logics
+      - -> see also `package.json` and
+          -  `src/`, `public/`, `assets/` directories
+          -  `.resctiptsrc.js`, `.webpack.config.js` files
 
-### `yarn start`
+![Screenshot](https://i.imgur.com/WUJdzLI.png)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[`Rust`]:https://www.rust-lang.org/
+[`Node.js`]:https://nodejs.org/
+[`react`]:https://reactjs.org/
+[`rescripts`]:https://github.com/harrysolovay/rescripts
+[`electron`]:https://www.electronjs.org/
+[`ffi-napi`]:https://github.com/node-ffi-napi
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Usage
 
-### `yarn test`
+Prepare these toolchains in advance:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Rust toolchain -> <https://www.rust-lang.org/tools/install>
+- Node.js toolchain -> <https://nodejs.org/en/download/>
 
-### `yarn build`
+And, these are optional technologies:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [`git`][]
+- [`cargo-generate`][]
+- [`yarn`][]
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Note: You can install manually or use a platform installers such as [`choco`](Windows), [`brew`](OSX), [`pacman`](Arch Linux), [`apt`](debian, Ubuntu) or etc.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[`choco`]:https://chocolatey.org/
+[`brew`]:https://brew.sh/
+[`pacman`]:https://wiki.archlinux.org/index.php/pacman
+[`apt`]:https://wiki.debian.org/Apt
+[`git`]:https://git-scm.com/
+[`yarn`]:https://yarnpkg.com/
 
-### `yarn eject`
+### Step-1: Generate your project from this template
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Method (a): [`cargo-generate`]; Recommended
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+cargo generate --git https://github.com/usagi/template-rust-backend-with-electron-frontend.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[`cargo-generate`]:https://github.com/ashleygwilliams/cargo-generate
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+or
 
-## Learn More
+- Method (b): For general; But not recommended
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Copy ( or `git clone` ) this repos to your working directory.
+2. Remove `cargo-generate.toml` file.
+3. Modify `Cargo.toml` to your project.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Step-2: Modify settings to your project
 
-### Code Splitting
+1. `Cargo.toml` and several setting files for Rust technology stack:
+   - `Cargo.toml`: `[workspace]` / `members` and `Cargo.toml` for each workspace.
+   - `rust-toolchain` ; Change to `stable` or `beta` if you need. The default is `nightly`.
+   - `.rustfmt.toml` ; Change to your style or remove it for simple if you like the standard rustfmt style. The default is like the [Allman style][].
+2. `package.json` for Node.js technology stack:
+   - `name`
+   - `description`
+   - `version`
+   - `private`
+   - `author`
+     - `name`
+     - `email`
+     - `url`
+   - `build`
+     - `appId`
+     - `productName`
+     - `copyright`
+     - `mac`
+         - and add `win`, `linux`, ... if needed.
+   - `scripts`/`electron-pack`; Change the platform argument `-w` to your target platform such as `-wml` if you need.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+[Allman style]:https://en.wikipedia.org/wiki/Indentation_style#Allman_style
 
-### Analyzing the Bundle Size
+### Step-3: Test `cargo` and `yarn` ( `npm` ) scripts
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- `cargo` ecosystem; It's designed for the standard usage
+  - `cargo check`
+  - `cargo build`
+  - `cargo test`
+- `yarn` ecosystem; It's customized for this stacks
+  - `yarn dev` ≃ `cargo build` + `start` + `electron`
+  - `yarn build`
+  - `yarn test`
+  - `yarn electron-pack` ≃ `cargo build --release` + `build` + `electron-builder`
 
-### Making a Progressive Web App
+### Step-4: Change README.md and LICENSE
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+- Change ( or remove for simple ) `README.md` and `LICENSE` files if you started with a simple copied or `git clone`.
+- Or, Create `README.md` and `LICENSE` files if you started with `cargo-generate` and you need these.
 
-### Advanced Configuration
+Note: *This process is very important if you don't want to apply the MIT licensing for your app delivered from this template. You don't forget it.*
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Step-5: Upgrade packages
 
-### Deployment
+1. `yarn upgrade`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Note: The Rust technology stack part has no dependencies, thus you would not need update packages. Maybe, [`cargo-update`][] is useful if you need a Rust technology stack part of your app delivered this template in a future.
 
-### `yarn build` fails to minify
+[`cargo-update`]:https://github.com/nabijaczleweli/cargo-update
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Well, done! Congratulations, you can begin to develop your app now.
+
+- Build only backend: `cargo build`
+- Unit testing only backend: `cargo test`
+- Build only frontend: `yarn build`
+- Build frontend and backend: `yarn build-with-backend`
+- Run the app with build: `yarn dev`
+- Package the app with build: `yarn electron-pack`
+- And, 
+  - You can use any `cargo` and `yarn` ( `npm`, `npx`, etc. ) or, Rust and Node.js technologies!
+  - To see [src.rs/lib/src/lib.rs](src.rs/lib/src/lib.rs) and try to modify it at the first if you are newbie for Rust FFI technologies!
+  - To see [public/preload.js](public/preload.js) and [src/App.js](src/App.js) and try to modify these at the first if you are newbie for Electron FFI technologies!
+
+Good luck!!
+
+## Notes
+
+1. You don't need `eject` of `create-react-app` because this template using [`rescripts`][]
+2. You can choose to any licensing for your app delivered from this template. I author of this template applied MIT licensing for this template project only.
+
+### FAQ
+
+(Q1) How to add a more native lib?
+
+1. `cd src.rs`
+2. `cargo new extra_my_lib --lib`
+3. Add the new workspace definition into the top level `Cargo.toml`
+4. Modify `Cargo.toml` of the new workspace; Maybe at least, you will need `cdylib` configuration.
+5. Modify `package.json`; Maybe at least, you will need add the new definition into `build.{win|mac|linux}.extraFiles`.
+6. Well done! You can use your new extra lib in your front-end of electron.
+
+(Q2) How to add a resource file for use from a native lib?
+
+- Maybe, you will need add the new definition into `build.extraFiles`.
+
+### Related references
+
+#### Useful documentations for a developers use this template
+
+- Rust side:
+  - [The Rust FFI Omnibus][]; Very useful for FFI marsharing basics!
+  - docs:
+    - [std::os::raw][] ; `c_char`, `c_ulonglong`, ...
+    - [std::ffi][] ; `CString`, `CStr`, ...
+- Node.js sise:
+  - [blackhat ASIA 2019 DOYENSEC Preloading Insecurity In Your Electron][]; Useful to your understanding for process isolation and IPC mechanical of Electron's preload feature
+  - Electron Documentation:
+    - [Docs / Guides / Security, Native Capabilities, and Your Responsibility][]
+  - npm:
+    - [node-ffi-napi][]
+    - [node-ref-napi][]
+
+[std::os::raw]:https://doc.rust-lang.org/std/os/raw/index.html
+[std::ffi]:https://doc.rust-lang.org/std/ffi/index.html
+[node-ffi-napi]:https://www.npmjs.com/package/ffi-napi
+[node-ref-napi]:https://www.npmjs.com/package/ref-napi
+[The Rust FFI Omnibus]:https://github.com/shepmaster/rust-ffi-omnibus
+[blackhat ASIA 2019 DOYENSEC Preloading Insecurity In Your Electron]:https://doyensec.com/resources/Asia-19-Carettoni-Preloading-Insecurity-In-Your-Electron.pdf
+[Docs / Guides / Security, Native Capabilities, and Your Responsibility]:https://www.electronjs.org/docs/tutorial/security
+
+#### Official site of the elemental technology stacks
+
+- [`Rust`][]
+- [`Node.js`][]
+- [`react`][]
+- [`rescripts`][]
+- [`electron`][]
+- [`ffi-napi`][]
+
+## License
+
+[MIT](LICENSE)
+
+Note: This licensing is applying to this original template only. It is not a copy-left. You choose any licensing to your app delivered this template project! And I author of this original template would not be  effect your delivered project anything!
+
+## Author
+
+USAGI.NETWORK / Usagi Ito <https://usagi.network/>
