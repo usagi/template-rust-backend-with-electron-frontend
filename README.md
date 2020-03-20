@@ -102,13 +102,13 @@ or
 - Change ( or remove for simple ) `README.md` and `LICENSE` files if you started with a simple copied or `git clone`.
 - Or, Create `README.md` and `LICENSE` files if you started with `cargo-generate` and you need these.
 
-Note: *This process is very important if you don't want to apply the MIT licensing for your app delivered from this template. You don't forget it.*
+Note: *This process is very important if you don't want to apply the MIT licensing for your app derived from this template. You don't forget it.*
 
 ### Step-5: Upgrade packages
 
 1. `yarn upgrade`
 
-Note: The Rust technology stack part has no dependencies, thus you would not need update packages. Maybe, [`cargo-update`][] is useful if you need a Rust technology stack part of your app delivered this template in a future.
+Note: The Rust technology stack part has no dependencies, thus you would not need update packages. Maybe, [`cargo-update`][] is useful if you need a Rust technology stack part of your app derived this template in a future.
 
 [`cargo-update`]:https://github.com/nabijaczleweli/cargo-update
 
@@ -130,7 +130,7 @@ Good luck!!
 ## Notes
 
 1. You don't need `eject` of `create-react-app` because this template using [`rescripts`][]
-2. You can choose to any licensing for your app delivered from this template. I author of this template applied MIT licensing for this template project only.
+2. You can choose to any licensing for your app derived from this template. I author of this template applied MIT licensing for this template project only.
 
 ### FAQ
 
@@ -185,7 +185,7 @@ Good luck!!
 
 [MIT](LICENSE)
 
-Note: This licensing is applying to this original template only. It is not a copy-left. You choose any licensing to your app delivered this template project! And I author of this original template would not be  effect your delivered project anything!
+Note: This licensing is applying to this original template only. It is not a copy-left. You choose any licensing to your app derived this template project! And I author of this original template would not be  effect your derived project anything!
 
 ## Author
 
