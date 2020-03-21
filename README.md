@@ -6,7 +6,7 @@ This is the template project with these stacks:
       - -> see also `Cargo.toml` and
           - `src.rs/` directory
           - `rust-toolchain`, `.rustfmt.toml` files
-2. [`Node.js`][] with [`react`][] + [`rescripts`][] + [`electron`][] + [`ffi-napi`][] for frontend presentation logics
+2. [`Node.js`][] with [`react`][] + [`rescripts`][] + [`electron`][] + [`electron-rebuild`][] + [`ffi-napi`][] for frontend presentation logics
       - -> see also `package.json` and
           -  `src/`, `public/`, `assets/` directories
           -  `.resctiptsrc.js`, `.webpack.config.js` files
@@ -18,6 +18,7 @@ This is the template project with these stacks:
 [`react`]:https://reactjs.org/
 [`rescripts`]:https://github.com/harrysolovay/rescripts
 [`electron`]:https://www.electronjs.org/
+[`electron-rebuild`]:https://github.com/electron/electron-rebuild
 [`ffi-napi`]:https://github.com/node-ffi-napi
 
 ## Usage
@@ -33,6 +34,11 @@ And, these are optional technologies:
 - [`cargo-generate`][]
 - [`yarn`][]
 
+And, you will need if you development with Windows(It will be required by [`electron-rebuild`][]):
+
+- [`windows-build-tools`][] ; `npm -g i windows-build-tools`
+    - with [`Visual C++`][] ; The standard toolchain of [`Node.js`][] of Windows version
+
 Note: You can install manually or use a platform installers such as [`choco`](Windows), [`brew`](OSX), [`pacman`](Arch Linux), [`apt`](debian, Ubuntu) or etc.
 
 [`choco`]:https://chocolatey.org/
@@ -41,6 +47,8 @@ Note: You can install manually or use a platform installers such as [`choco`](Wi
 [`apt`]:https://wiki.debian.org/Apt
 [`git`]:https://git-scm.com/
 [`yarn`]:https://yarnpkg.com/
+[`Visual C++`]:https://docs.microsoft.com/en-us/cpp/
+[`windows-build-tools`]:https://www.npmjs.com/package/windows-build-tools
 
 ### Step-1: Generate your project from this template
 
