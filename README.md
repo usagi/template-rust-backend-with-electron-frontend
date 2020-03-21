@@ -107,8 +107,7 @@ or
 
 ### Step-4: Change README.md and LICENSE
 
-- Change ( or remove for simple ) `README.md` and `LICENSE` files if you started with a simple copied or `git clone`.
-- Or, Create `README.md` and `LICENSE` files if you started with `cargo-generate` and you need these.
+- Change ( or create or remove for simple ) `README.md` and `LICENSE` files.
 
 Note: *This process is very important if you don't want to apply the MIT licensing for your app derived from this template. You don't forget it.*
 
