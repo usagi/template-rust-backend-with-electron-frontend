@@ -204,6 +204,7 @@ See: <https://github.com/usagi/neon-vs-node-ffi-napi#neon-vs-node-ffi-napi>
 - [`rescripts`][]
 - [`electron`][]
 - [`ffi-napi`][]
+- [`NEON`][]
 
 ## License
 
