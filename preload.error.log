@@ -1,1 +1,0 @@
-Error: Loading non-context-aware native module in renderer: '\\?\C:\Users\usagi\tmp\template-rust-backend-with-electron-frontend\native\index.node', but app.allowRendererProcessReuse is true. See https://github.com/electron/electron/issues/18397.
