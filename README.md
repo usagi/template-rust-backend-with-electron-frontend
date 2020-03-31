@@ -118,7 +118,7 @@ or
 
 1. Modify to `neon build --release` from `neon build` for all of `package.json` scripts.
 2. Nor, use to `{ git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }` for `neon` and `neon-build` for `dependencies` and `build-dependencies` in `native/Cargo.toml`.
-3. Wait merge a fixing and new releasing.
+3. Wait merge the fixing and new releasing.
 
 ### Step-4: Change README.md and LICENSE
 

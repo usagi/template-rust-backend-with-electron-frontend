@@ -12,10 +12,10 @@ name = "{{crate_name}}_marshalling"
 crate-type = ["cdylib"]
 
 [build-dependencies]
-# neon-build = "0.4.0"
-neon-build = { git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }
+neon-build = "0.4.0"
+# neon-build = { git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }
 
 [dependencies]
-# neon = "0.4.0"
-neon = { git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }
+neon = "0.4.0"
+# neon = { git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }
 {{project-name}}-backend = { path = "backend" }
