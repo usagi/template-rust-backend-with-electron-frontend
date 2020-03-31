@@ -1,5 +1,9 @@
 # template-rust-backend-with-electron-frontend ( template project )
 
+Note: This template project of the `node-ffi-napi` branch is [`ffi-napi`][] version! If you want to use the [`NEON`][] version, then switch to the [branch/master][].
+
+[branch/master]:https://github.com/usagi/template-rust-backend-with-electron-frontend
+
 This is the template project with these stacks:
 
 1. [`Rust`][] native library project for backend business logics
@@ -20,6 +24,7 @@ This is the template project with these stacks:
 [`electron`]:https://www.electronjs.org/
 [`electron-rebuild`]:https://github.com/electron/electron-rebuild
 [`ffi-napi`]:https://github.com/node-ffi-napi
+[`NEON`]:https://neon-bindings.com/
 
 ## Usage
 
@@ -127,7 +132,7 @@ Well, done! Congratulations, you can begin to develop your app now.
 - Build frontend and backend: `yarn build-with-backend`
 - Run the app with build: `yarn dev`
 - Package the app with build: `yarn electron-pack`
-- And, 
+- And,
   - You can use any `cargo` and `yarn` ( `npm`, `npx`, etc. ) or, Rust and Node.js technologies!
   - To see [src.rs/lib/src/lib.rs](src.rs/lib/src/lib.rs) and try to modify it at the first if you are newbie for Rust FFI technologies!
   - To see [public/preload.js](public/preload.js) and [src/App.js](src/App.js) and try to modify these at the first if you are newbie for Electron FFI technologies!
