@@ -1,12 +1,18 @@
 # template-rust-backend-with-electron-frontend ( template project )
 
+Note: This template project of the `master` branch was migrated to use [`NEON`][] version! If you want to use the `node-ffi-napi` version, then switch to the [branch/node-ffi-napi][].
+
+[branch/master]:https://github.com/usagi/template-rust-backend-with-electron-frontend/
+[branch/node-ffi-napi]:https://github.com/usagi/template-rust-backend-with-electron-frontend/tree/node-ffi-napi
+
 This is the template project with these stacks:
 
-1. [`Rust`][] native library project for backend business logics
+1. [`Rust`][] native code library project for backend business logics
       - -> see also `Cargo.toml` and
-          - `src.rs/` directory
+          - `native/` directory is the marshalling part using [`NEON`][], its `Rust` with [`N-API`][] technology stacking.
+          - `native/backend` directory is the native code business logic core part, its pure-`Rust`.
           - `rust-toolchain`, `.rustfmt.toml` files
-2. [`Node.js`][] with [`react`][] + [`rescripts`][] + [`electron`][] + [`electron-rebuild`][] + [`ffi-napi`][] for frontend presentation logics
+2. [`Node.js`][] with [`react`][] + [`rescripts`][] + [`electron`][] + [`electron-rebuild`][] for frontend presentation logics
       - -> see also `package.json` and
           -  `src/`, `public/`, `assets/` directories
           -  `.resctiptsrc.js`, `.webpack.config.js` files
@@ -20,6 +26,8 @@ This is the template project with these stacks:
 [`electron`]:https://www.electronjs.org/
 [`electron-rebuild`]:https://github.com/electron/electron-rebuild
 [`ffi-napi`]:https://github.com/node-ffi-napi
+[`NEON`]:https://neon-bindings.com/
+[`N-API`]:https://nodejs.org/api/n-api.html
 
 ## Usage
 
@@ -95,15 +103,22 @@ or
 
 ### Step-3: Test `cargo` and `yarn` ( `npm` ) scripts
 
-- `cargo` ecosystem; It's designed for the standard usage
+- `cargo` ecosystem
   - `cargo check`
-  - `cargo build`
   - `cargo test`
+- `neon`-cli ( ≃ `cargo` + building suppliments ) ecosystem
+  - `neon build`; (†1)
 - `yarn` ecosystem; It's customized for this stacks
-  - `yarn dev` ≃ `cargo build` + `start` + `electron`
-  - `yarn build`
+  - `yarn dev` ≃ `neon build` + `start` + `electron`
+  - `yarn build` (†1)
   - `yarn test`
   - `yarn electron-pack` ≃ `cargo build --release` + `build` + `electron-builder`
+
+(†1): If you using a Windows environment then see also <https://github.com/neon-bindings/neon/issues/463> . And choose from below:
+
+1. Modify to `neon build --release` from `neon build` for all of `package.json` scripts.
+2. Nor, use to `{ git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }` for `neon` and `neon-build` for `dependencies` and `build-dependencies` in `native/Cargo.toml`.
+3. Wait merge a fixing and new releasing.
 
 ### Step-4: Change README.md and LICENSE
 
@@ -121,13 +136,11 @@ Note: The Rust technology stack part has no dependencies, thus you would not nee
 
 Well, done! Congratulations, you can begin to develop your app now.
 
-- Build only backend: `cargo build`
-- Unit testing only backend: `cargo test`
-- Build only frontend: `yarn build`
-- Build frontend and backend: `yarn build-with-backend`
-- Run the app with build: `yarn dev`
-- Package the app with build: `yarn electron-pack`
-- And, 
+- Unit testing only the backend: `yarn test` = `cargo test`
+- Build the frontend and the backend: `yarn build` = `neon build`
+- Run the app with build: `yarn dev` = `yarn build` + `yarn start`
+- Package the app with build: `yarn electron-pack` = `build.release` + ...
+- And,
   - You can use any `cargo` and `yarn` ( `npm`, `npx`, etc. ) or, Rust and Node.js technologies!
   - To see [src.rs/lib/src/lib.rs](src.rs/lib/src/lib.rs) and try to modify it at the first if you are newbie for Rust FFI technologies!
   - To see [public/preload.js](public/preload.js) and [src/App.js](src/App.js) and try to modify these at the first if you are newbie for Electron FFI technologies!
@@ -153,6 +166,10 @@ Good luck!!
 (Q2) How to add a resource file for use from a native lib?
 
 - Maybe, you will need add the new definition into `build.extraFiles`.
+
+(Q3) Why it use `NEON`, not `node-ffi-napi`?
+
+See: <https://github.com/usagi/neon-vs-node-ffi-napi#neon-vs-node-ffi-napi>
 
 ### Related references
 

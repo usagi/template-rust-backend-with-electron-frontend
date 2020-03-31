@@ -1,3 +1,9 @@
 [template]
-include = [ "Cargo.toml", "package.json" ]
+include = [
+ "Cargo.toml",
+ "package.json",
+ "native/Cargo.toml",
+ "native/backend/Cargo.toml",
+ "native/src/lib.rs"
+]
 exclude = [ "*.png" ]

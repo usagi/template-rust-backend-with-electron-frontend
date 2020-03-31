@@ -1,2 +1,2 @@
 [workspace]
-members = [ "src.rs/lib" ]
+members = [ "native", "native/backend", ]
