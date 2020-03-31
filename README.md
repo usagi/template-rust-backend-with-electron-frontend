@@ -60,7 +60,7 @@ Note: You can install manually or use a platform installers such as [`choco`](Wi
 - Method (a): [`cargo-generate`]; Recommended
 
 ```sh
-cargo generate --git https://github.com/usagi/template-rust-backend-with-electron-frontend.git
+cargo generate --git https://github.com/usagi/template-rust-backend-with-electron-frontend.git --branch node-ffi-napi
 ```
 
 [`cargo-generate`]:https://github.com/ashleygwilliams/cargo-generate
@@ -69,7 +69,7 @@ or
 
 - Method (b): For general; But not recommended
 
-1. Copy ( or `git clone` ) this repos to your working directory.
+1. Copy ( or `git clone` and `git checkout node-ffi-napi` ) this repos to your working directory.
 2. Remove `cargo-generate.toml` file.
 3. Modify `Cargo.toml` to your project.
 
