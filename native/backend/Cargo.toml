@@ -1,10 +1,8 @@
 [package]
-name = "lib"
+name = "{{project-name}}-backend"
 version = "0.0.0"
 authors = [ "{{authors}}" ]
 edition = "2018"
 
 [lib]
-crate-type = [ "cdylib" ]
-
-[dependencies]
+name = "{{crate_name}}_backend"

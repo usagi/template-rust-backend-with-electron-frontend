@@ -1,0 +1,21 @@
+[package]
+name = "{{project-name}}-marshalling"
+version = "0.0.0"
+authors = ["{{authors}}"]
+license = "MIT"
+build = "build.rs"
+edition = "2018"
+exclude = ["artifacts.json", "index.node"]
+
+[lib]
+name = "{{crate_name}}_marshalling"
+crate-type = ["cdylib"]
+
+[build-dependencies]
+neon-build = "0.4.0"
+# neon-build = { git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }
+
+[dependencies]
+neon = "0.4.0"
+# neon = { git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }
+{{project-name}}-backend = { path = "backend" }

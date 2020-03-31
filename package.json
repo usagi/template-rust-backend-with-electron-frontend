@@ -1,94 +1,96 @@
 {
-  "name": "{{project-name}}",
-  "description": "(WiP; This project derived in {{ "now" | date: "%FT%T%z" }} from https://github.com/usagi/template-rust-backend-with-electron-frontend )",
-  "version": "0.0.0",
-  "private": true,
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "main": "public/electron.js",
-  "homepage": "./",
-  "author": {
-    "name": "{{authors}}",
-    "email": "author@example.com",
-    "url": "https://example.com"
-  },
-  "build": {
-    "appId": "com.example.{{project-name}}",
-    "productName": "{{project-name}}",
-    "copyright": "Copyright © 2020 ${author}",
-    "win": {
-      "extraFiles": [
-        "target/release/lib.dll"
-      ]
-    },
-    "mac": {
-      "extraFiles": [
-        "target/release/lib.dylib"
-      ],
-      "category": "public.app-category.utilities"
-    },
-    "linux": {
-      "extraFiles": [
-        "target/release/lib.so"
-      ]
-    },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*",
-      ""
-    ],
-    "directories": {
-      "buildResources": "assets"
-    }
-  },
-  "rescripts": [
-    "env"
+ "name": "{{project-name}}",
+ "description": "(WiP; This project derived in DT from https://github.com/usagi/template-rust-backend-with-electron-frontend )",
+ "version": "0.0.0",
+ "private": true,
+ "browserslist": {
+  "production": [
+   ">0.2%",
+   "not dead",
+   "not op_mini all"
   ],
-  "scripts": {
-    "start": "rescripts start",
-    "build": "rescripts build",
-    "test": "rescripts test",
-    "dev": "cargo build && concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "postinstall": "electron-builder install-app-deps",
-    "preelectron-pack": "yarn build",
-    "electron-pack": "cargo build --release && electron-builder build -w",
-    "build-cargo-debug": "cargo build && cpx \"target/debug/*.{dll,so,dylib}\" assets",
-    "build-cargo-release": "cargo build --release"
+  "development": [
+   "last 1 chrome version",
+   "last 1 firefox version",
+   "last 1 safari version"
+  ]
+ },
+ "main": "public/electron.js",
+ "homepage": "./",
+ "author": {
+  "name": "{{authors}}",
+  "email": "author@example.com",
+  "url": "https://example.com"
+ },
+ "build": {
+  "appId": "com.example.{{project-name}}",
+  "productName": "{{project-name}}",
+  "copyright": "Copyright © 2020 ${author}",
+  "mac": {
+   "category": "public.app-category.utilities"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "cross-env": "^7.0.2",
-    "electron-is-dev": "^1.1.0",
-    "ffi-napi": "^2.4.7",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0",
-    "ref-napi": "^1.4.3"
-  },
-  "devDependencies": {
-    "@rescripts/cli": "^0.0.13",
-    "@rescripts/rescript-env": "^0.0.11",
-    "concurrently": "^5.1.0",
-    "cpx": "^1.5.0",
-    "electron": "^8.1.1",
-    "electron-builder": "^22.4.1",
-    "electron-rebuild": "^1.10.1",
-    "typescript": "^3.8.3",
-    "wait-on": "^4.0.1"
+  "files": [
+   "build/**/*",
+   "node_modules/**/*",
+   "native/index.node"
+  ],
+  "directories": {
+   "buildResources": "assets"
   }
+ },
+ "rescripts": [
+  "env"
+ ],
+ "scripts": {
+  "start": "rescripts start",
+  "build": "run build.debug",
+  "build.debug": "run-s build.debug.backend build.debug.frontend",
+  "build.debug.backend": "electron-build-env neon build",
+  "build.debug.frontend": "rescripts build",
+  "build.release": "run-s build.release.backend build.release.frontend",
+  "build.release.backend": "electron-build-env neon build --release",
+  "build.release.frontend": "rescripts build",
+  "test": "run-s test.backend test.frontend",
+  "test.backend": "cargo test",
+  "test.frontend": "rescripts test",
+  "dev": "run-s build dev.concurrent",
+  "dev.debug": "run-s build.debug dev.concurrent",
+  "dev.release": "run-s build.release dev.concurrent",
+  "dev.concurrent": "run-p dev.concurrent.env_start dev.concurrent.wait_electron",
+  "dev.concurrent.env_start": "cross-env BROWSER=none yarn start",
+  "dev.concurrent.wait_electron": "run-s dev.concurrent.wait_on dev.concurrent.electron",
+  "dev.concurrent.wait_on": "wait-on http://localhost:3000",
+  "dev.concurrent.electron": "electron .",
+  "postinstall": "electron-builder install-app-deps",
+  "preelectron-pack": "yarn build",
+  "electron-pack": "run-s build.release.backend electron-pack.electron-builder",
+  "electron-pack.electron-builder": "electron-builder build -w"
+ },
+ "eslintConfig": {
+  "extends": "react-app"
+ },
+ "dependencies": {
+  "@testing-library/jest-dom": "^4.2.4",
+  "@testing-library/react": "^9.3.2",
+  "@testing-library/user-event": "^7.1.2",
+  "cross-env": "^7.0.2",
+  "electron-is-dev": "^1.1.0",
+  "react": "^16.13.0",
+  "react-dom": "^16.13.0",
+  "react-scripts": "3.4.0"
+ },
+ "devDependencies": {
+  "@rescripts/cli": "^0.0.13",
+  "@rescripts/rescript-env": "^0.0.11",
+  "cpx": "^1.5.0",
+  "electron": "^8.1.1",
+  "electron-build-env": "^0.2.0",
+  "electron-builder": "^22.4.1",
+  "electron-rebuild": "^1.10.1",
+  "neon-cli": "^0.4.0",
+  "npm-run-all": "^4.1.5",
+  "run-proxy": "^1.0.1",
+  "typescript": "^3.8.3",
+  "wait-on": "^4.0.1"
+ }
 }
