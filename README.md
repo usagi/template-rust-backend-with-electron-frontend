@@ -192,6 +192,7 @@ Good luck!!
 - [`rescripts`][]
 - [`electron`][]
 - [`ffi-napi`][]
+- [`NEON`][]
 
 ## License
 
