@@ -116,9 +116,9 @@ or
 
 (†1): If you using a Windows environment then see also <https://github.com/neon-bindings/neon/issues/463> . And choose from below:
 
-1. Modify to `neon build --release` from `neon build` for all of `package.json` scripts.
-2. Nor, use to `{ git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }` for `neon` and `neon-build` for `dependencies` and `build-dependencies` in `native/Cargo.toml`.
-3. Wait merge the fixing and new releasing.
+1. To use `yarn dev.release` and a release version scripts.
+2. Or, modify the neon dependencies to `{ git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }` these are `neon` and `neon-build` in the `dependencies` and `build-dependencies` in the `native/Cargo.toml`.
+3. Or, wait merge the fixing and new releasing.
 
 ### Step-4: Change README.md and LICENSE
 

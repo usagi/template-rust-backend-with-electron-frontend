@@ -54,6 +54,8 @@
   "test.backend": "cargo test",
   "test.frontend": "rescripts test",
   "dev": "run-s build dev.concurrent",
+  "dev.debug": "run-s build.debug dev.concurrent",
+  "dev.release": "run-s build.release dev.concurrent",
   "dev.concurrent": "run-p dev.concurrent.env_start dev.concurrent.wait_electron",
   "dev.concurrent.env_start": "cross-env BROWSER=none yarn start",
   "dev.concurrent.wait_electron": "run-s dev.concurrent.wait_on dev.concurrent.electron",
