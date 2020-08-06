@@ -1,21 +1,12 @@
-use {{crate_name}}_backend::*;
-use neon::prelude::*;
+use {{crate_name}}_backend as backend;
+use node_bindgen::derive::node_bindgen;
 
-fn marshalling_example_add(mut cx: FunctionContext) -> JsResult<JsNumber> {
- let a = cx.argument::<JsNumber>(0)?.value();
- let b = cx.argument::<JsNumber>(1)?.value();
- let r = {{crate_name}}_backend::example_add(a as f32, b as f32);
- Ok(cx.number(r))
+#[node_bindgen]
+fn example_add(a: f64, b: f64) -> f64 {
+ backend::example_add(a as f32, b as f32) as f64
 }
 
-fn marshalling_example_concat(mut cx: FunctionContext) -> JsResult<JsString> {
- let a = cx.argument::<JsString>(0)?.value();
- let b = cx.argument::<JsString>(1)?.value();
- let r = example_concat(&a, &b);
- Ok(cx.string(r))
+#[node_bindgen]
+fn example_concat(a: String, b: String) -> String {
+ backend::example_concat(&a, &b)
 }
-
-register_module!(mut cx, {
- cx.export_function("example_add", marshalling_example_add)?;
- cx.export_function("example_concat", marshalling_example_concat)
-});

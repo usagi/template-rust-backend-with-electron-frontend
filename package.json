@@ -42,13 +42,14 @@
   "env"
  ],
  "scripts": {
+  "install.dev-dependencies.nj-cli": "cargo install nj-cli",
   "start": "rescripts start",
   "build": "run build.debug",
   "build.debug": "run-s build.debug.backend build.debug.frontend",
-  "build.debug.backend": "electron-build-env neon build",
+  "build.debug.backend": "electron-build-env nj-cli build",
   "build.debug.frontend": "rescripts build",
   "build.release": "run-s build.release.backend build.release.frontend",
-  "build.release.backend": "electron-build-env neon build --release",
+  "build.release.backend": "electron-build-env nj-cli build --release",
   "build.release.frontend": "rescripts build",
   "test": "run-s test.backend test.frontend",
   "test.backend": "cargo test",
